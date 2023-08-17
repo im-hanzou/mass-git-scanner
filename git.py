@@ -28,7 +28,7 @@ def git_scan(site):
         git = requests.get('http://' + site + '/.git/HEAD', headers=header, timeout=10)
         response_git = git.text
         if content_git in response_git:
-            open('gitfound.txt', 'a').write('http://'+site +'\n')
+            open('gitfound.txt', 'a').write('http://'+site +'/.git/'+'\n')
             print('http://'+ site, VERDE + '[+] Git found ! [+]' + BRANCO)
         else:
             print('http://'+ site, VERMELHO + '[-] Git not found ! [-]' + BRANCO)
