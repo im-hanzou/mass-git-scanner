@@ -35,7 +35,9 @@ def git_scan(site):
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout, requests.exceptions.TooManyRedirects, requests.exceptions.InvalidSchema, requests.exceptions.InvalidURL) as e:
         print('http://'+ site, AMARELO + '[-] Invalid url or site down [-]' + BRANCO)
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+num_threads = int(input("Enter the number of threads to use: "))
+
+with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
     futures = [executor.submit(git_scan, site) for site in files]
 
 # Wait for all threads to finish
